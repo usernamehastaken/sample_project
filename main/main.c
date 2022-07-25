@@ -61,7 +61,7 @@ void ledBreath()
     }
     while (1)
     {
-        for (int intDuty = 0; intDuty < 4000; intDuty+=100)
+        for (int intDuty = 0; intDuty < 1000; intDuty+=20)
         {
             for (int i = 0; i < 3; i++)
             {
@@ -70,7 +70,7 @@ void ledBreath()
             }
             vTaskDelay(2);
         }
-        for (int intDuty = 4000; intDuty >0; intDuty-=100)
+        for (int intDuty = 1000; intDuty >0; intDuty-=20)
         {
             for (int i = 0; i < 3; i++)
             {
@@ -84,12 +84,19 @@ void ledBreath()
 
 void ledLight()
 {
-    for (int i = 18; i < 19; i++)
+    int myGPIO =18;
+    gpio_reset_pin(myGPIO);
+    ESP_LOGI("","reset done");
+    gpio_set_direction(myGPIO,GPIO_MODE_OUTPUT);
+    ESP_LOGI("","gpio_set_direction done");
+    while (true)
     {
-        gpio_reset_pin(i);
-        gpio_set_direction(i,GPIO_MODE_OUTPUT);
-        gpio_set_level(i,1);
-        vTaskDelay(500);
+        gpio_set_level(myGPIO,true);
+        ESP_LOGI("","gpio_set_level 1 done");
+        vTaskDelay(500/portTICK_PERIOD_MS);
+        gpio_set_level(myGPIO,0);
+        ESP_LOGI("","gpio_set_level 0 done");
+        vTaskDelay(500/portTICK_PERIOD_MS);
     }
 }
 
@@ -124,7 +131,6 @@ void get_wifi()
 
 void app_main(void)
 {
-
-    get_wifi();
+    ledBreath();
 }
 
