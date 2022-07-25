@@ -1,0 +1,16 @@
+{
+  "C_Cpp.intelliSenseEngine": "Tag Parser",
+  "idf.flashType": "UART",
+  "idf.portWin": "COM6",
+  "idf.adapterTargetName": "esp32c3",
+  "idf.openOcdConfigs": [
+    "board/esp32c3-ftdi.cfg"
+  ],
+  "files.associations": {
+    "bitset": "c",
+    "chrono": "c",
+    "algorithm": "c",
+    "ledc.h": "c",
+    "stdio.h": "c"
+  }
+}
